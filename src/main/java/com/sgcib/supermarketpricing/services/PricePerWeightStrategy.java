@@ -15,7 +15,8 @@ public class PricePerWeightStrategy implements ProductPricingStrategy {
 
 	@Override
 	public BigDecimal getTotalPrice(Product product, int totalQuantity) {
-		return BigDecimal.ZERO;
+		return product.getPricePerUnit()
+				.multiply(BigDecimal.valueOf((double) totalQuantity / product.getQuantityPerUnit()));
 	}
 
 }

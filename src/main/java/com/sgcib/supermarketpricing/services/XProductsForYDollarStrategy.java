@@ -27,7 +27,8 @@ public class XProductsForYDollarStrategy implements ProductPricingStrategy {
 
 	@Override
 	public BigDecimal getTotalPrice(final Product product, final int totalQuantity) {
-		return BigDecimal.ZERO;
+		return product.getPricePerUnit().multiply(BigDecimal.valueOf(totalQuantity % this.productsNumber))
+				.add(this.price.multiply(BigDecimal.valueOf(totalQuantity / this.productsNumber)));
 	}
 
 	public int getProductsNumber() {
